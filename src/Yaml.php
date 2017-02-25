@@ -5,8 +5,7 @@ use memCrab\Cache\FileCache;
 use memCrab\Exceptions\FileException;
 
 class Yaml extends File {
-
-	public function load(string $filePath, FileCache $Cache = null) {
+	public function load(string $filePath, FileCache $Cache = null): File {
 		if (is_a($Cache, 'FileCache')) {
 			$key = $Cache->key($filePath);
 			if ($Cache->exists($key)) {
@@ -25,16 +24,12 @@ class Yaml extends File {
 	private function parseYamlFile(string $filePath) {
 		$this->checkFilePath($filePath);
 
-		$this->content = yaml_parse_file($filePath);
+		$this->content = \yaml_parse_file($filePath);
 		if ($this->content === false) {
 			throw new FileException(
 				_("Can't parse yaml content from file:") . " " . $this->fullPath,
 				501
 			);
 		}
-	}
-
-	public function getContent():  ? array{
-		return $this->content;
 	}
 }
