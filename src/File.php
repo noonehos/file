@@ -1,6 +1,7 @@
 <?php
 declare (strict_types = 1);
 namespace memCrab\File;
+use memCrab\Cache\FileCache;
 use memCrab\Exceptions\FileException;
 
 class File {
@@ -23,7 +24,7 @@ class File {
 		return $this;
 	}
 
-	public function getContent():  ? string {
+	public function getContent() {
 		return $this->content;
 	}
 }
