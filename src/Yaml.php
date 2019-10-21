@@ -6,8 +6,8 @@ use memCrab\Exceptions\FileException;
 
 class Yaml extends File {
 	public function load(string $filePath, FileCache $Cache = null): File {
-		if (is_a($Cache, 'FileCache')) {
-			$key = $Cache->key($filePath);
+		if (is_a($Cache, 'memCrab\Cache\RedisCache')) {
+			$key = $Cache->fileKey($filePath);
 			if ($Cache->exists($key)) {
 				$this->content = $Cache->get($key);
 			} else {
